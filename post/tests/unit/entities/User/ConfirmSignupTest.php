@@ -1,8 +1,7 @@
 <?php
 
 
-namespace common\tests\unit\entities\User;
-
+namespace post\tests\unit\entities\User;
 
 use Codeception\Test\Unit;
 use post\entities\User;
@@ -20,7 +19,6 @@ class ConfirmSignupTest extends Unit
         $this->assertFalse($user->isWait());
         $this->assertTrue($user->isActive());
     }
-
     public function testAlreadyActive()
     {
         $user = new User([
@@ -30,5 +28,4 @@ class ConfirmSignupTest extends Unit
         $this->expectExceptionMessage('User is already active.');
         $user->confirmSignup();
     }
-
 }

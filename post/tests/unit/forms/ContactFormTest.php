@@ -1,8 +1,9 @@
 <?php
-namespace frontend\tests\unit\forms;
+
+
+namespace post\tests\unit\forms;
 
 use post\forms\ContactForm;
-
 
 class ContactFormTest extends \Codeception\Test\Unit
 {
@@ -15,7 +16,7 @@ class ContactFormTest extends \Codeception\Test\Unit
             'subject' => 'very important letter subject',
             'body' => 'body of current message',
         ];
-
-        expect_that($model->validate());
+        expect_that($model->validate(['name', 'email', 'subject', 'body']));
     }
+
 }

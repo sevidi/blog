@@ -3,7 +3,7 @@
 
 namespace common\bootstrap;
 
-use frontend\services\contact\ContactService;
+use post\services\ContactService;
 use yii\base\BootstrapInterface;
 use yii\mail\MailerInterface;
 

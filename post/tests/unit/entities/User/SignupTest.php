@@ -1,7 +1,7 @@
 <?php
 
 
-namespace common\tests\unit\entities\User;
+namespace post\tests\unit\entities\User;
 
 use Codeception\Test\Unit;
 use post\entities\User;
@@ -24,5 +24,6 @@ class SignupTest extends Unit
         $this->assertNotEmpty($user->auth_key);
         $this->assertFalse($user->isActive());
         $this->assertTrue($user->isWait());
-}
+    }
+
 }

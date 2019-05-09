@@ -4,7 +4,7 @@
 namespace common\tests\unit\entities\User;
 
 use Codeception\Test\Unit;
-use common\entities\User;
+use post\entities\User;
 
 class RequestSignupTest extends Unit
 {

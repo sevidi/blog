@@ -1,7 +1,7 @@
 <?php
 
 
-namespace common\repositories;
+namespace post\repositories;
 
 
 class NotFoundException extends \DomainException

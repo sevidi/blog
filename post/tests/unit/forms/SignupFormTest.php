@@ -1,11 +1,13 @@
 <?php
-namespace frontend\tests\unit\forms;
 
-namespace frontend\tests\unit\forms;
+
+namespace post\tests\unit\forms;
+
+use Codeception\Test\Unit;
 use common\fixtures\UserFixture;
 use post\forms\auth\SignupForm;
 
-class SignupFormTest extends \Codeception\Test\Unit
+class SignupFormTest extends Unit
 {
     /**
      * @var \frontend\tests\UnitTester
@@ -21,6 +23,7 @@ class SignupFormTest extends \Codeception\Test\Unit
             ]
         ]);
     }
+
     public function testCorrectSignup()
     {
         $model = new SignupForm([
@@ -46,4 +49,5 @@ class SignupFormTest extends \Codeception\Test\Unit
         expect($model->getFirstError('email'))
             ->equals('This email address has already been taken.');
     }
+
 }

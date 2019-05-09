@@ -1,11 +1,11 @@
 <?php
 
 
-namespace common\services;
+namespace post\services\auth;
 
-use common\entities\User;
-use common\forms\LoginForm;
-use common\repositories\UserRepository;
+use post\entities\User;
+use post\forms\auth\LoginForm;
+use post\repositories\UserRepository;
 
 class AuthService
 {

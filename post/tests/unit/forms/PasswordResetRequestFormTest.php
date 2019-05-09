@@ -1,19 +1,20 @@
 <?php
 
-namespace frontend\tests\unit\forms;
 
+namespace post\tests\unit\forms;
+
+use Codeception\Test\Unit;
 use Yii;
 use post\forms\auth\PasswordResetRequestForm;
 use common\fixtures\UserFixture as UserFixture;
 use post\entities\User;
 
-class PasswordResetRequestFormTest extends \Codeception\Test\Unit
+class PasswordResetRequestFormTest extends Unit
 {
     /**
      * @var \frontend\tests\UnitTester
      */
     protected $tester;
-
 
     public function _before()
     {
@@ -43,11 +44,11 @@ class PasswordResetRequestFormTest extends \Codeception\Test\Unit
     public function testSuccessfully()
     {
         $userFixture = $this->tester->grabFixture('user', 0);
-        
+
         $model = new PasswordResetRequestForm();
         $model->email = $userFixture['email'];
         $user = User::findOne(['password_reset_token' => $userFixture['password_reset_token']]);
-
         expect_that($model->validate());
     }
+
 }

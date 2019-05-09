@@ -5,7 +5,7 @@ namespace frontend\tests\unit\forms;
 
 use Codeception\Test\Unit;
 use common\fixtures\UserFixture;
-use frontend\forms\ResendVerificationEmailForm;
+use post\forms\auth\ResendVerificationEmailForm;
 
 class ResendVerificationEmailFormTest extends Unit
 {

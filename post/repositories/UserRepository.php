@@ -1,9 +1,10 @@
 <?php
 
 
-namespace common\repositories;
+namespace post\repositories;
 
-use common\entities\User;
+use post\entities\User;
+use post\repositories\NotFoundException;
 
 class UserRepository
 {
