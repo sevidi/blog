@@ -4,7 +4,7 @@
 namespace post\forms\auth;
 
 use Yii;
-use post\entities\User;
+use post\entities\User\User;
 use yii\base\Model;
 
 class ResendVerificationEmailForm extends Model
@@ -25,7 +25,7 @@ class ResendVerificationEmailForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
-                'targetClass' => '\post\entities\User',
+                'targetClass' => '\post\entities\User\User',
                 'filter' => ['status' => User::STATUS_INACTIVE],
                 'message' => 'There is no user with this email address.'
             ],

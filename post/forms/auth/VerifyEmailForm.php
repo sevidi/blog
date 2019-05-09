@@ -2,7 +2,7 @@
 
 namespace post\forms\auth;
 
-use post\entities\User;
+use post\entities\User\User;
 use yii\base\InvalidArgumentException;
 use yii\base\Model;
 

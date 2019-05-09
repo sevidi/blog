@@ -3,7 +3,7 @@ namespace post\forms\auth;
 
 use Yii;
 use yii\base\Model;
-use post\entities\User;
+use post\entities\User\User;
 
 /**
  * Signup form

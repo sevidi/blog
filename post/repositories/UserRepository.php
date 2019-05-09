@@ -3,7 +3,7 @@
 
 namespace post\repositories;
 
-use post\entities\User;
+use post\entities\User\User;
 use post\repositories\NotFoundException;
 
 class UserRepository

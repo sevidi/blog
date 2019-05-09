@@ -3,7 +3,7 @@
 
 namespace post\services\auth;
 
-use post\entities\User;
+use post\entities\User\User;
 use post\forms\auth\SignupForm;
 use post\repositories\UserRepository;
 use yii\mail\MailerInterface;

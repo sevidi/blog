@@ -7,7 +7,7 @@ use Codeception\Test\Unit;
 use Yii;
 use post\forms\auth\PasswordResetRequestForm;
 use common\fixtures\UserFixture as UserFixture;
-use post\entities\User;
+use post\entities\User\User;
 
 class PasswordResetRequestFormTest extends Unit
 {

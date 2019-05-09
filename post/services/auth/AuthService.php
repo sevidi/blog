@@ -3,7 +3,7 @@
 
 namespace post\services\auth;
 
-use post\entities\User;
+use post\entities\User\User;
 use post\forms\auth\LoginForm;
 use post\repositories\UserRepository;
 
