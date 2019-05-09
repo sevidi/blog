@@ -25,9 +25,8 @@ class SignupService
             $form->password
         );
 
-        if (!$user->save()) {
-            throw new \RuntimeException('Saving error.');
-        }
+        $this->save($user);
+
         $sent = $this->mailer
             ->compose(
                 ['html' => 'emailConfirmToken-html', 'text' => 'emailConfirmToken-text'],
@@ -46,12 +45,21 @@ class SignupService
         if (empty($token)) {
             throw new \DomainException('Empty confirm token.');
         }
-        /* @var $user User */
-        $user = User::findOne(['email_confirm_token' => $token]);
-        if (!$user) {
+        $user = $this->getByEmailConfirmToken($token);
+        $user->confirmSignup();
+        $this->save($user);
+    }
+
+    private function getByEmailConfirmToken(string $token): User
+    {
+        if (!$user = User::findOne(['email_confirm_token' => $token])) {
             throw new \DomainException('User is not found.');
         }
-        $user->confirmSignup();
+        return $user;
+    }
+
+    private function save(User $user): void
+    {
         if (!$user->save()) {
             throw new \RuntimeException('Saving error.');
         }
