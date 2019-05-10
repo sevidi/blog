@@ -4,9 +4,10 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
 /* @var $model post\forms\manage\User\UserEditForm */
-/* @var $user post\entities\User */
+/* @var $user post\entities\User\User */
 
-$this->title = 'Update User: ' . $model->id;
+
+$this->title = 'Update User: ' . $user->id;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $user->id, 'url' => ['view', 'id' => $user->id]];
 $this->params['breadcrumbs'][] = 'Update';

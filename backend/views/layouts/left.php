@@ -31,6 +31,9 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Management', 'options' => ['class' => 'header']],
+                    ['label' => 'Blog', 'icon' => 'folder', 'items' => [
+                        ['label' => 'Tags', 'icon' => 'file-o', 'url' => ['/blog/tag/index'], 'active' => $this->context->id == 'blog/tag'],
+                    ]],
                     ['label' => 'Users', 'icon' => 'user', 'url' => ['/user/index'], 'active' => $this->context->id == 'user/index'],
                 ],
             ]
