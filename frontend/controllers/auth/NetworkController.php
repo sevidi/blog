@@ -35,6 +35,7 @@ class NetworkController extends Controller
         $network = $client->getId();
         $attributes = $client->getUserAttributes();
         $identity = ArrayHelper::getValue($attributes, 'id');
+
         try {
             $user = $this->service->auth($network, $identity);
             Yii::$app->user->login($user, Yii::$app->params['user.rememberMeDuration']);

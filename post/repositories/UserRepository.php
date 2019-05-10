@@ -4,7 +4,7 @@
 namespace post\repositories;
 
 use post\entities\User\User;
-use post\repositories\NotFoundException;
+
 
 class UserRepository
 {
