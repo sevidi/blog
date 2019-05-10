@@ -5,6 +5,7 @@ namespace post\services\manage;
 
 use post\entities\User\User;
 use post\forms\manage\User\UserCreateForm;
+use post\forms\manage\User\UserEditForm;
 use post\repositories\UserRepository;
 
 class UserManageService
@@ -25,6 +26,16 @@ class UserManageService
         );
         $this->repository->save($user);
         return $user;
+    }
+
+    public function edit($id, UserEditForm $form): void
+    {
+        $user = $this->repository->get($id);
+        $user->edit(
+            $form->username,
+            $form->email
+        );
+        $this->repository->save($user);
     }
 
 }
