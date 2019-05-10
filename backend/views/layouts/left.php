@@ -32,6 +32,7 @@
                 'items' => [
                     ['label' => 'Management', 'options' => ['class' => 'header']],
                     ['label' => 'Blog', 'icon' => 'folder', 'items' => [
+                        ['label' => 'Posts', 'icon' => 'file-o', 'url' => ['/blog/post/index'], 'active' => $this->context->id == 'blog/post'],
                         ['label' => 'Tags', 'icon' => 'file-o', 'url' => ['/blog/tag/index'], 'active' => $this->context->id == 'blog/tag'],
                         ['label' => 'Categories', 'icon' => 'file-o', 'url' => ['/blog/category/index'], 'active' => $this->context->id == 'blog/category'],
                     ]],
