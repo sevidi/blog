@@ -7,7 +7,6 @@ use yii\helpers\Url;
 
 $url = Url::to(['post', 'id' =>$model->id]);
 ?>
-
 <div class="blog-posts-item">
     <?php if ($model->photo): ?>
         <div>

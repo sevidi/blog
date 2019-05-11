@@ -7,11 +7,13 @@ use yii\helpers\Url;
 
 ?>
 
-<div class="row">
     <?php foreach ($posts as $post): ?>
+<article class="post">
+
         <?php $url = Url::to(['/blog/post/post', 'id' =>$post->id]); ?>
-        <div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="product-thumb transition">
+
+
+            <div class="post-thumb">
                 <?php if ($post->photo): ?>
                     <div class="image">
                         <a href="<?= Html::encode($url) ?>">
@@ -20,12 +22,18 @@ use yii\helpers\Url;
                     </div>
                 <?php endif; ?>
                 <div>
-                    <div class="caption">
+                <div class="post-content">
+                    <div class="entry-header text-center text-uppercase">
+                        <h5><a href="<?= Html::encode($url) ?>"><?= Html::encode($post->category->name) ?></a></h5>
                         <h4><a href="<?= Html::encode($url) ?>"><?= Html::encode($post->title) ?></a></h4>
+                        <div class="entry-content">
                         <p><?= Html::encode(StringHelper::truncateWords(strip_tags($post->description), 20)) ?></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+</article>
     <?php endforeach; ?>
-</div>

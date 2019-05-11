@@ -271,6 +271,13 @@ article {
     border: 1px solid #eee;
 }
 
+.entry-content{
+   font-family: Arial;
+    font-size: 12px;
+    text-align: justify;
+
+}
+
 .entry-header {
     margin: 40px 0 23px;
 }
@@ -695,39 +702,7 @@ feature post
     text-decoration: none;
 }
 
-/*==================
-owl carousel
-==============*/
 
-#widget-feature:hover .owl-controls .owl-buttons .owl-prev {
-    left: 10px;
-}
-
-#widget-feature .owl-controls .owl-buttons .owl-prev {
-    left: -50px;
-}
-
-#widget-feature:hover .owl-controls .owl-buttons .owl-next {
-    right: 10px;
-}
-
-#widget-feature .owl-controls .owl-buttons .owl-next {
-    right: -50px;
-}
-
-#widget-feature .owl-controls .owl-buttons div {
-    background: none;
-    border-radius: 0;
-    line-height: 30px;
-    margin: 0;
-    padding: 0;
-    font-size: 30px;
-    position: absolute;
-    top: 50%;
-    margin-top: -15px;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-}
 
 /*======
 recent post
@@ -911,44 +886,12 @@ athuor
     border-left: 6px solid transparent;
 }
 
-.carousel-indicators li {
-    background-color: #fff;
-    border-color: #fff;
-}
-
-.carousel-indicators li.active {
-    width: 8px;
-    height: 8px;
-    margin: 1px;
-    background-color: #60c7eb;
-    border: 0;
-}
-
-.footer-widget .carousel-indicators {
-    position: absolute;
-    bottom: 13px;
-    left: 90%;
-    z-index: 15;
-    width: 30%;
-    padding-left: 15px;
-    margin-left: -20%;
-}
-
 .author-id {
     margin-top: 33px;
 
 }
 
-.carousel-indicators li {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    margin: 1px;
-    text-indent: -999px;
-    cursor: pointer;
-    border: 1px solid #fff;
-    border-radius: 50%;
-}
+
 
 .author-id img {
     float: left;
