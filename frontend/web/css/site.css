@@ -122,3 +122,9 @@ a.desc:after {
 .auth-clients {
     padding: 0 0 20px 0;
 }
+
+.blog-posts-item {
+    margin: 20px 0;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+}
