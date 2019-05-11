@@ -14,6 +14,7 @@ use yii\web\UrlRuleInterface;
 
 class PageUrlRule extends Object implements UrlRuleInterface
 {
+
     private $repository;
     private $cache;
 
