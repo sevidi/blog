@@ -3,20 +3,32 @@
 
 namespace post\services\auth;
 
+use post\access\Rbac;
 use post\entities\User\User;
 use post\forms\auth\SignupForm;
 use post\repositories\UserRepository;
+use post\services\RoleManager;
+use post\services\TransactionManager;
 use yii\mail\MailerInterface;
 
 class SignupService
 {
     private $mailer;
     private $users;
+    private $roles;
+    private $transaction;
 
-    public function __construct(UserRepository $users, MailerInterface $mailer)
+    public function __construct(
+        UserRepository $users,
+        MailerInterface $mailer,
+        RoleManager $roles,
+        TransactionManager $transaction
+    )
     {
         $this->mailer = $mailer;
         $this->users = $users;
+        $this->roles = $roles;
+        $this->transaction = $transaction;
     }
 
 
@@ -28,7 +40,10 @@ class SignupService
             $form->password
         );
 
-        $this->users->save($user);
+        $this->transaction->wrap(function () use ($user) {
+            $this->users->save($user);
+            $this->roles->assign($user->id, Rbac::ROLE_USER);
+        });
 
         $sent = $this->mailer
             ->compose(

@@ -30,7 +30,8 @@
         "paulzi/yii2-nested-sets": "^1.1",
         "mihaildev/yii2-ckeditor": "^1.0",
         "mihaildev/yii2-elfinder": "^1.3",
-        "bower-asset/magnific-popup": "^1.1"
+        "bower-asset/magnific-popup": "^1.1",
+        "fishvision/yii2-migrate": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

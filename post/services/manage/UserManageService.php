@@ -7,14 +7,20 @@ use post\entities\User\User;
 use post\forms\manage\User\UserCreateForm;
 use post\forms\manage\User\UserEditForm;
 use post\repositories\UserRepository;
+use post\services\RoleManager;
+use post\services\TransactionManager;
 
 class UserManageService
 {
     private $repository;
+    private $roles;
+    private $transaction;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository $repository, RoleManager $roles, TransactionManager $transaction)
     {
         $this->repository = $repository;
+        $this->roles = $roles;
+        $this->transaction = $transaction;
     }
 
     public function create(UserCreateForm $form): User
@@ -24,7 +30,10 @@ class UserManageService
             $form->email,
             $form->password
         );
-        $this->repository->save($user);
+        $this->transaction->wrap(function () use ($user, $form) {
+            $this->repository->save($user);
+            $this->roles->assign($user->id, $form->role);
+        });
         return $user;
     }
 
@@ -35,7 +44,10 @@ class UserManageService
             $form->username,
             $form->email
         );
-        $this->repository->save($user);
+        $this->transaction->wrap(function () use ($user, $form) {
+            $this->repository->save($user);
+            $this->roles->assign($user->id, $form->role);
+        });
     }
 
     public function remove($id): void
