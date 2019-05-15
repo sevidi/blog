@@ -265,9 +265,9 @@ class Post extends ActiveRecord
                 'thumbs' => [
                     'admin' => ['width' => 100, 'height' => 70],
                     'thumb' => ['width' => 640, 'height' => 480],
-                    'blog_list' => ['width' => 1000, 'height' => 150],
-                    'widget_list' => ['width' => 1000, 'height' => 660],
-                    'origin' => ['processor' => [new WaterMarker(1024, 768, '@frontend/web/image/logo.png'), 'process']],
+                    'blog_list' => ['width' => 1000, 'height' => 560],
+                    'widget_list' => ['width' => 1000, 'height' => 560],
+                    'origin' => ['processor' => [new WaterMarker(1024, 560, '@frontend/web/image/logo.png'), 'process']],
                 ],
             ],
         ];

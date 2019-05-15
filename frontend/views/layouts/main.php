@@ -11,8 +11,6 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 use yii\helpers\Url;
 
-
-
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -64,7 +62,7 @@ AppAsset::register($this);
                 </div>
             </div>
             <nav>
-                <div class="container">
+
 
                     <?php
                     NavBar::begin([
@@ -78,6 +76,7 @@ AppAsset::register($this);
                     $menuItems = [
                         ['label' => 'Home', 'url' => ['/site/index']],
                         ['label' => 'Blog', 'url' => ['/blog/post/index']],
+                        ['label' => 'About', 'url' => ['/view/about']],
                         ['label' => 'Contact', 'url' => ['/contact/index']],
                     ];
                     if (Yii::$app->user->isGuest) {
@@ -103,16 +102,18 @@ AppAsset::register($this);
                     ]);
                     NavBar::end();
                     ?>
-                </div>
+
             </nav>
 
     </header>
-    <div class="container">
+    <div class="main-content">
+        <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
+        </div>
     </div>
     <!--footer start-->
 

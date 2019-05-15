@@ -23,9 +23,7 @@ class SetUp implements BootstrapInterface
             $app->params['adminEmail']
         ]);
 
-        $container->setSingleton(Cache::class, function () use ($app) {
-            return $app->cache;
-        });
+
 
     }
 

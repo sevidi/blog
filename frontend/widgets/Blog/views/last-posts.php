@@ -23,11 +23,12 @@ use yii\helpers\Url;
                 <?php endif; ?>
                 <div>
                 <div class="post-content">
-                    <div class="entry-header text-center text-uppercase">
+                    <div class="entry-header text-center">
                         <h5><a href="<?= Html::encode($url) ?>"><?= Html::encode($post->category->name) ?></a></h5>
                         <h4><a href="<?= Html::encode($url) ?>"><?= Html::encode($post->title) ?></a></h4>
                         <div class="entry-content">
                         <p><?= Html::encode(StringHelper::truncateWords(strip_tags($post->description), 20)) ?></p>
+                            <span class="p-date"><?= Html::encode(Yii::$app->formatter->format($post->created_at, 'date')) ?></span>
                         </div>
                     </div>
                 </div>
