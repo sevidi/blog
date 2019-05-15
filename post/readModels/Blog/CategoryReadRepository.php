@@ -19,9 +19,9 @@ class CategoryReadRepository
 
     /**
      * @param $slug
-     * @return Category|null
+     * @return array|Category|\yii\db\ActiveRecord|null
      */
-    public function findBySlug($slug): ?Category
+    public function findBySlug($slug)
     {
         return Category::find()->andWhere(['slug' => $slug])->one();
     }

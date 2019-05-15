@@ -138,7 +138,7 @@ AppAsset::register($this);
                     <ul class="list-unstyled">
                         <li><a href="/index.php?route=information/contact">Contact Us</a></li>
                         <li><a href="/index.php?route=account/return/add">Returns</a></li>
-                        <li><a href="/index.php?route=information/sitemap">Site Map</a></li>
+                        <li><?=Html::a('Site Map', ['/sitemap']) ?></li>
                     </ul>
                 </div>
                 <div class="col-sm-3">

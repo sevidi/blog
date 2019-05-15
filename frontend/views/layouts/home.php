@@ -15,7 +15,7 @@ $this->title = 'SHATILIN';
 
 <div class="main-content">
     <div class="row">
-        <div id="slideshow0" class="owl-carousel" style="opacity: 1;">
+        <div id="slideshow0" class="owl-carousel" style="opacity: 1; margin-bottom: 40px">
             <div class="item" >
                 <a href="index.php?route=product/product&amp;path=57&amp;product_id=49"><img
                             src="http://static.blog.com/cache/banners/shatilin1.jpg"

@@ -7,6 +7,10 @@ use post\entities\Page;
 
 class PageReadRepository
 {
+    public function getAll(): array
+    {
+        return Page::find()->andWhere(['>', 'depth', 0])->all();
+    }
 
     public function find($id): ?Page
     {

@@ -269,7 +269,7 @@ article {
     border: 1px solid #eee;
 }
 
-.page-view{
+.page-view, .main-content{
     min-height: 480px;
 }
 
