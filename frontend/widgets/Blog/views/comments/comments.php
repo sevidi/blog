@@ -13,11 +13,15 @@ use yii\helpers\Html;
 
     <div id="comments" class="inner-bottom-xs">
         <h2>Comments</h2>
+          <?php if(Yii::$app->user->isGuest): ?>
+             <p>Комментирование доступно только для <?= Html::a('зарегистрированных', ['auth/signup/request'], ['class' => 'profile-link']) ?> польльзователей</p>
+          <?php endif;?>
+
         <?php foreach ($items as $item): ?>
             <?= $this->render('_comment', ['item' => $item]) ?>
         <?php endforeach; ?>
     </div>
-
+    <?php if(!Yii::$app->user->isGuest): ?>
     <div id="reply-block" class="leave-reply">
         <?php $form = ActiveForm::begin([
             'action' => ['comment', 'id' => $post->id],
@@ -32,7 +36,7 @@ use yii\helpers\Html;
 
         <?php ActiveForm::end(); ?>
     </div>
-
+   <?php endif;?>
 <?php $this->registerJs("
     jQuery(document).on('click', '#comments .comment-reply', function () {
         var link = jQuery(this);
@@ -42,4 +46,5 @@ use yii\helpers\Html;
         form.detach().appendTo(comment.find('.reply-block:first'));
         return false;
     });
+
 "); ?>

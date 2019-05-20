@@ -3,12 +3,11 @@
 
 namespace post\entities\Blog\Post;
 
-use post\entities\Blog\Post\Comment;
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
 use post\entities\behaviors\MetaBehavior;
-use post\entities\Blog\Post\queries\CommentQuery;
 use post\entities\Blog\Post\queries\PostQuery;
 use post\entities\Meta;
+use post\entities\User\User;
 use post\entities\Blog\Category;
 use post\entities\Blog\Tag;
 use post\services\WaterMarker;
@@ -27,6 +26,8 @@ use yiidreamteam\upload\ImageUploadBehavior;
  * @property string $photo
  * @property integer $status
  * @property integer $comments_count
+ * @property integer viewed
+ * @property integer user_id
  *
  * @property Meta $meta
  * @property Category $category
@@ -55,6 +56,9 @@ class Post extends ActiveRecord
         $post->status = self::STATUS_DRAFT;
         $post->created_at = time();
         $post->comments_count = 0;
+        $post->viewed = 0;
+        $post->user_id = \Yii::$app->user->id;
+
         return $post;
     }
 
@@ -240,6 +244,23 @@ class Post extends ActiveRecord
         return $this->hasMany(Comment::class, ['post_id' => 'id']);
     }
 
+    /**
+     * @return ActiveQuery
+     */
+    public function getUser(): ActiveQuery
+    {
+        return $this->hasOne(User::class,['id' => 'user_id']);
+    }
+
+    /**
+     * @return bool
+     */
+    public function viewedCounter()
+    {
+        $this->viewed += 1;
+        return $this->save(false);
+    }
+
     ##########################
     public static function tableName(): string
     {
@@ -265,7 +286,7 @@ class Post extends ActiveRecord
                 'thumbs' => [
                     'admin' => ['width' => 100, 'height' => 70],
                     'thumb' => ['width' => 640, 'height' => 480],
-                    'blog_list' => ['width' => 1000, 'height' => 560],
+                    'blog_list' => ['width' => 800, 'height' => 420],
                     'widget_list' => ['width' => 1000, 'height' => 560],
                     'origin' => ['processor' => [new WaterMarker(1024, 560, '@frontend/web/image/logo.png'), 'process']],
                 ],

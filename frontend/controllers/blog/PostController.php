@@ -21,6 +21,7 @@ class PostController extends Controller
     private $categories;
     private $tags;
 
+
     public function __construct(
         $id,
         $module,
@@ -36,6 +37,7 @@ class PostController extends Controller
         $this->posts = $posts;
         $this->categories = $categories;
         $this->tags = $tags;
+
     }
 
     /**
@@ -93,6 +95,8 @@ class PostController extends Controller
         if (!$post = $this->posts->find($id)) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+        $post->viewedCounter();
+
         return $this->render('post', [
             'post' => $post,
         ]);

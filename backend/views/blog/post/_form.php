@@ -22,6 +22,7 @@ use yii\bootstrap\ActiveForm;
                 <div class="box-header with-border">Common</div>
                 <div class="box-body">
                     <?= $form->field($model, 'categoryId')->dropDownList($model->categoriesList(), ['prompt' => '']) ?>
+
                 </div>
             </div>
         </div>

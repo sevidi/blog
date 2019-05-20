@@ -4,6 +4,8 @@
 namespace post\entities\Blog\Post;
 
 use post\entities\Blog\Post\queries\PostQuery;
+use post\entities\User\User;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -65,6 +67,11 @@ class Comment extends ActiveRecord
     public function getPost(): PostQuery
     {
         return $this->hasOne(Post::class, ['id' => 'post_id']);
+    }
+
+    public function getUser(): ActiveQuery
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
     public static function tableName(): string

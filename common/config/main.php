@@ -9,7 +9,7 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
             'cachePath' => '@common/runtime/cache',
-           // 'class' => 'yii\caching\MemCache',
+          // 'class' => 'yii\caching\MemCache',
            //  'useMemcached' => true,
         ],
         'authManager' => [

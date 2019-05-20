@@ -5,6 +5,7 @@
 use frontend\widgets\Blog\CommentsWidget;
 use yii\helpers\Html;
 
+
 $this->title = $post->getSeoTitle();
 
 $this->registerMetaTag(['name' =>'description', 'content' => $post->meta->description]);
@@ -22,15 +23,15 @@ foreach ($post->tags as $tag) {
 }
 ?>
 
-<article>
+<article class="post">
+   <div class="post-content">
     <h1><?= Html::encode($post->title) ?></h1>
 
     <p><span class="glyphicon glyphicon-calendar"></span> <?= Yii::$app->formatter->asDatetime($post->created_at); ?></p>
 
     <?php if ($post->photo): ?>
-        <p><img src="<?= Html::encode($post->getThumbFileUrl('photo', 'origin')) ?>" alt="" class="img-responsive" /></p>
+        <p><img src="<?= Html::encode($post->getThumbFileUrl('photo', 'origin')) ?>" alt="" class="img-responsive" ></p>
     <?php endif; ?>
-
     <?= Yii::$app->formatter->asHtml($post->content, [
         'Attr.AllowedRel' => array('nofollow'),
         'HTML.SafeObject' => true,
@@ -38,9 +39,23 @@ foreach ($post->tags as $tag) {
         'HTML.SafeIframe' => true,
         'URI.SafeIframeRegexp'=>'%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
     ]) ?>
-</article>
 
-<p>Tags: <?= implode(', ', $tagLinks) ?></p>
+    <div class="entry-header">
+        Tags: <?= implode(', ', $tagLinks) ?>
+    </div>
+       <div class="social-share">
+		<span class="social-share-title pull-left text-capitalize">Автор: <?=$post->user->username;?></span>
+
+           <ul class="text-center pull-right">
+               <li><a class="s-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+               <li><a class="s-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+               <li><a class="s-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+               <li><a class="s-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+               <li><a class="s-instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+           </ul>
+       </div>
+   </div>
+</article>
 
 <?= CommentsWidget::widget([
     'post' => $post,

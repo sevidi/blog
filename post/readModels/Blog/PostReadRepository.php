@@ -17,11 +17,19 @@ class PostReadRepository
         return Post::find()->active()->count();
     }
 
+    /**
+     * @param $offset
+     * @param $limit
+     * @return array
+     */
     public function getAllByRange($offset, $limit): array
     {
         return Post::find()->active()->orderBy(['id' => SORT_ASC])->limit($limit)->offset($offset)->all();
     }
 
+    /**
+     * @return DataProviderInterface
+     */
     public function getAll(): DataProviderInterface
     {
         $query = Post::find()->active()->with('category');
@@ -45,12 +53,12 @@ class PostReadRepository
 
     public function getLast($limit): array
     {
-        return Post::find()->with('category')->orderBy(['id' => SORT_DESC])->limit($limit)->all();
+        return Post::find()->active()->with('category')->orderBy(['id' => SORT_DESC])->limit($limit)->all();
     }
 
     public function getPopular($limit): array
     {
-        return Post::find()->with('category')->orderBy(['comments_count' => SORT_DESC])->limit($limit)->all();
+        return Post::find()->active()->with('category')->orderBy(['viewed' => SORT_DESC])->limit($limit)->all();
     }
 
     public function find($id): ?Post

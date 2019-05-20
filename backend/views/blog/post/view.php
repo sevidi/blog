@@ -59,6 +59,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'label' => 'Tags',
                         'value' => implode(', ', ArrayHelper::getColumn($post->tags, 'name')),
                     ],
+                    'viewed',
+                    [
+                        'attribute' => 'author',
+                        'value' => ArrayHelper::getValue($post, 'user.username'),
+                    ],
                 ],
             ]) ?>
         </div>

@@ -24,6 +24,9 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     font-family: 'Open Sans', sans-serif;
 }
+h1{
+    font-size: 24px;
+}
 
 a {
     text-decoration: none;
@@ -272,6 +275,10 @@ article {
 .page-view, .main-content{
     min-height: 480px;
 }
+img.img-responsive{
+    text-align: center;
+
+}
 
 .entry-content{
    font-family: Arial;
@@ -316,9 +323,7 @@ article {
     color: #00acdf;
 }
 
-.post-thumb img {
-    width: 100%;
-}
+
 
 a.more-link {
     font-size: 12px;
@@ -343,6 +348,7 @@ a.more-link:hover {
 .post {
     background: #fff;
     margin-bottom: 50px;
+
 }
 
 .post-content {
@@ -972,6 +978,9 @@ athuor
 /*===========
 blog css
 =============*/
+.decoration{
+    margin: 10px 0;
+}
 .decoration a {
     color: #60c7eb;
     border: 1px solid #60c7eb;
@@ -1530,6 +1539,14 @@ p.go-back-home a:hover {
 #comments .comment-item .comment-item .comment-item .comment-item .comment-item .margin {
     margin-left: 0;
 }
+
+#comments .comment-img img{
+    float: left;
+    margin: 5px 10px 0 5px;
+    width: 80px;
+}
+
+
 /* alert */
 .alert {
     padding: 8px 14px 8px 14px;
@@ -1656,6 +1673,10 @@ footer h5 {
 
 .navbar-default{
     border-color:#F4F4F4 ;
+}
+
+.pull-right{
+    list-style: none;
 }
 
 @media (max-width: 320px)  {

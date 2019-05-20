@@ -5,8 +5,12 @@
 ?>
 
 <div class="comment-item" data-id="<?= $item->comment->id ?>">
+    <div class="comment-img">
+    <img src="/image/user.jpg" class="float-left img-circle"  alt="Paris" width="50%">
+    </div>
     <div class="panel panel-default">
         <div class="panel-body">
+            <h5><?=$item->comment->user->username?></h5>
             <p class="comment-content">
                 <?php if ($item->comment->isActive()): ?>
                     <?= Yii::$app->formatter->asNtext($item->comment->text) ?>
@@ -17,13 +21,15 @@
             <div>
                 <div class="pull-left">
                     <?= Yii::$app->formatter->asDatetime($item->comment->created_at) ?>
+
                 </div>
                 <div class="pull-right">
-                    <span class="comment-reply">Reply</span>
+                    <span class="comment-reply">Ответить</span>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="margin">
         <div class="reply-block"></div>
         <div class="comments">
