@@ -17,18 +17,16 @@ $this->title = 'SHATILIN';
     <div class="row">
         <div id="slideshow0" class="owl-carousel" style="opacity: 1; margin-bottom: 40px">
             <div class="item" >
-                <a href="index.php?route=product/product&amp;path=57&amp;product_id=49"><img
-                            src="http://static.blog.com/cache/banners/shatilin1.jpg"
-                            alt="iPhone 6" class="img-responsive"></a>
-
+               <img src="http://static.blog.com/cache/banners/shatilin1.jpg"
+                    alt="iPhone 6" class="img-responsive">
             </div>
             <div class="item">
                 <img src="http://static.blog.com/cache/banners/shatilin2.jpg"
-                     alt="MacBookAir" class="img-responsive"/>
+                     alt="MacBookAir" class="img-responsive">
             </div>
             <div class="item">
                 <img src="http://static.blog.com/cache/banners/shatilin3.jpg"
-                     alt="MacBookAir" class="img-responsive"/>
+                     alt="MacBookAir" class="img-responsive">
             </div>
         </div>
 

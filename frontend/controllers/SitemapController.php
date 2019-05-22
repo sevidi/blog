@@ -101,6 +101,7 @@ class SitemapController extends Controller
                 );
             }, $this->posts->getAllByRange($start, self::ITEMS_PER_PAGE)));
         });
+
     }
 
 

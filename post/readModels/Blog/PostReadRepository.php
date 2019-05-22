@@ -61,6 +61,10 @@ class PostReadRepository
         return Post::find()->active()->with('category')->orderBy(['viewed' => SORT_DESC])->limit($limit)->all();
     }
 
+    /**
+     * @param $id
+     * @return Post|null
+     */
     public function find($id): ?Post
     {
         return Post::find()->active()->andWhere(['id' => $id])->one();

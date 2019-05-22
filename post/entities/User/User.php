@@ -19,6 +19,11 @@ use yii\web\IdentityInterface;
  * @property string $verification_token
  * @property string $email
  * @property string $email_confirm_token
+ * @property string $phone
+ * @property string $photo
+ * @property string last_name
+ * @property string firtst_name
+ * @property integer birhday
  * @property string $auth_key
  * @property integer $status
  * @property integer $created_at
@@ -32,11 +37,25 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_WAIT = 0;
     const STATUS_ACTIVE = 10;
 
-    public static function create(string $username, string $email, string $password): self
+    public static function create(
+        string $username,
+        string $email,
+        string $password,
+        string $phone,
+        string $photo,
+        string $last_name,
+        string $first_name,
+        int    $birhday
+         ): self
     {
         $user = new User();
         $user->username = $username;
         $user->email = $email;
+        $user->phone = $phone;
+        $user->photo = $photo;
+        $user->last_name = $last_name;
+        $user->first_name = $first_name;
+        $user->birhday = $birhday;
         $user->setPassword(!empty($password) ? $password : Yii::$app->security->generateRandomString());
         $user->created_at = time();
         $user->status = self::STATUS_ACTIVE;
@@ -44,10 +63,23 @@ class User extends ActiveRecord implements IdentityInterface
         return $user;
     }
 
-    public function edit(string $username, string $email): void
+    public function edit(
+        string $username,
+        string $email,
+        string $phone,
+        string $photo,
+        string $last_name,
+        string $first_name,
+        int    $birhday
+    ): void
     {
         $this->username = $username;
         $this->email = $email;
+        $this->phone = $phone;
+        $this->photo = $photo;
+        $this->last_name = $last_name;
+        $this->firtst_name = $first_name;
+        $this->birhday = $birhday;
         $this->updated_at = time();
     }
 

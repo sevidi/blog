@@ -35,6 +35,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'id',
                     'username',
                     'email:email',
+                    'phone',
+                    'photo',
+                    'last_name',
+                    'first_name',
+                    'birhday',
                     [
                         'attribute' => 'status',
                         'value' => UserHelper::statusLabel($model->status),
