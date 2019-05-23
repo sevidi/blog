@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
@@ -16,16 +17,19 @@ foreach ($page->parents as $parent) {
 }
 $this->params['breadcrumbs'][] = $page->title;
 ?>
-<article class="page-view" >
 
-    <h1><?= Html::encode($page->title) ?></h1>
+<article class="post-content profile-user">
+    <div class="row">
 
-    <?= Yii::$app->formatter->asHtml($page->content, [
-        'Attr.AllowedRel' => array('nofollow'),
-        'HTML.SafeObject' => true,
-        'Output.FlashCompat' => true,
-        'HTML.SafeIframe' => true,
-        'URI.SafeIframeRegexp'=>'%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
-    ]) ?>
+        <h1><?= Html::encode($page->title) ?></h1>
+
+        <?= Yii::$app->formatter->asHtml($page->content, [
+            'Attr.AllowedRel' => array('nofollow'),
+            'HTML.SafeObject' => true,
+            'Output.FlashCompat' => true,
+            'HTML.SafeIframe' => true,
+            'URI.SafeIframeRegexp' => '%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%',
+        ]) ?>
+    </div>
 
 </article>

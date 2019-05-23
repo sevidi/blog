@@ -28,6 +28,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
                 'columns' => [
+                    [
+                        'value' => function (User $model) {
+                            return $model->photo ? Html::img($model->getThumbFileUrl('photo', 'admin')) : null;
+                        },
+                        'format' => 'raw',
+                        'contentOptions' => ['style' => 'width: 100px'],
+                    ],
                     'id',
                     [
                         'attribute' => 'created_at',

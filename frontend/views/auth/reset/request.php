@@ -2,30 +2,35 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
+
 /* @var $model \post\forms\auth\PasswordResetRequestForm */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Request password reset';
+$this->title = 'Запросить сброс пароля';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-request-password-reset">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out your email. A link to reset password will be sent there.</p>
-
+<article class="post-content profile-user">
     <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
+        <div class="site-request-password-reset">
+            <h1><?= Html::encode($this->title) ?></h1>
 
-                <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+            <p>Пожалуйста, заполните вашу электронную почту. Ссылка для сброса пароля будет отправлена туда.</p>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+            <div class="row">
+                <div class="col-lg-5">
+                    <?php $form = ActiveForm::begin(['id' => 'request-password-reset-form']); ?>
+
+                    <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+
+                    <div class="form-group">
+                        <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>
+                    </div>
+
+                    <?php ActiveForm::end(); ?>
                 </div>
-
-            <?php ActiveForm::end(); ?>
+            </div>
         </div>
     </div>
-</div>
+</article>

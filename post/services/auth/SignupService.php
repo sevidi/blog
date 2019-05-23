@@ -32,11 +32,15 @@ class SignupService
     }
 
 
+    /**
+     * @param SignupForm $form
+     */
     public function signup(SignupForm $form): void
     {
         $user = User::requestSignup(
             $form->username,
             $form->email,
+            $form->phone,
             $form->password
         );
 

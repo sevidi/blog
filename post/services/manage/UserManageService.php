@@ -28,8 +28,18 @@ class UserManageService
         $user = User::create(
             $form->username,
             $form->email,
+            $form->phone,
+            $form->photo,
+            $form->last_name,
+            $form->first_name,
+            $form->birhday,
             $form->password
         );
+
+        if ($form->photo) {
+            $user->setPhoto($form->photo);
+        }
+
         $this->transaction->wrap(function () use ($user, $form) {
             $this->repository->save($user);
             $this->roles->assign($user->id, $form->role);
@@ -42,8 +52,18 @@ class UserManageService
         $user = $this->repository->get($id);
         $user->edit(
             $form->username,
-            $form->email
+            $form->email,
+            $form->phone,
+            $form->photo,
+            $form->last_name,
+            $form->first_name,
+            $form->birthday
         );
+
+        if ($form->photo) {
+            $user->setPhoto($form->photo);
+        }
+
         $this->transaction->wrap(function () use ($user, $form) {
             $this->repository->save($user);
             $this->roles->assign($user->id, $form->role);

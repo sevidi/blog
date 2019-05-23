@@ -1,5 +1,6 @@
 <?php
 
+use kartik\file\FileInput;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -10,7 +11,11 @@ use yii\widgets\ActiveForm;
 
 <div class="user-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => ['enctype'=>'multipart/form-data']
+    ]); ?>
+
+    <div class="box-header with-border">Photo</div>
 
     <?= $form->field($model, 'status')->textInput() ?>
 

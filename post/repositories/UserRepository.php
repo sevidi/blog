@@ -3,6 +3,7 @@
 
 namespace post\repositories;
 
+use post\entities\Blog\Post\Post;
 use post\entities\User\User;
 
 

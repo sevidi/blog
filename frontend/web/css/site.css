@@ -9,6 +9,7 @@
 body {
     font-family: 'Open Sans', sans-serif;
     background: #F4F4F4;
+
 }
 
 span, p, input {
@@ -269,7 +270,7 @@ post css
 }
 
 article {
-    border: 1px solid #eee;
+
 }
 
 .page-view, .main-content{
@@ -355,7 +356,7 @@ a.more-link:hover {
 .post-content {
     padding: 0 43px;
     overflow: hidden;
-    font-size: 18px;
+    font-size: 14px;
 
 }
 
@@ -1678,6 +1679,14 @@ footer h5 {
 
 .pull-right{
     list-style: none;
+}
+
+.input-group .form-control{
+    height: 40px;
+}
+
+.profile-user{
+    background-color: #ffffff;
 }
 
 @media (max-width: 320px)  {

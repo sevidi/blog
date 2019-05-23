@@ -2,12 +2,15 @@
 namespace post\entities\User;
 
 use lhs\Yii2SaveRelationsBehavior\SaveRelationsBehavior;
+use post\services\WaterMarker;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yii\web\UploadedFile;
+use yiidreamteam\upload\ImageUploadBehavior;
 
 /**
  * User model
@@ -22,8 +25,8 @@ use yii\web\IdentityInterface;
  * @property string $phone
  * @property string $photo
  * @property string last_name
- * @property string firtst_name
- * @property integer birhday
+ * @property string first_name
+ * @property integer birthday
  * @property string $auth_key
  * @property integer $status
  * @property integer $created_at
@@ -37,15 +40,20 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_WAIT = 0;
     const STATUS_ACTIVE = 10;
 
+    public function getFullName()
+    {
+        return $this->last_name . ' ' . $this->first_name;
+    }
+
     public static function create(
         string $username,
         string $email,
-        string $password,
         string $phone,
-        string $photo,
+        string $photo = null,
         string $last_name,
         string $first_name,
-        int    $birhday
+        string $birthday,
+        string $password
          ): self
     {
         $user = new User();
@@ -55,7 +63,7 @@ class User extends ActiveRecord implements IdentityInterface
         $user->photo = $photo;
         $user->last_name = $last_name;
         $user->first_name = $first_name;
-        $user->birhday = $birhday;
+        $user->birthday = $birthday;
         $user->setPassword(!empty($password) ? $password : Yii::$app->security->generateRandomString());
         $user->created_at = time();
         $user->status = self::STATUS_ACTIVE;
@@ -63,14 +71,20 @@ class User extends ActiveRecord implements IdentityInterface
         return $user;
     }
 
+    public function setPhoto(UploadedFile $photo): void
+    {
+        $this->photo = $photo;
+    }
+
+
     public function edit(
         string $username,
         string $email,
         string $phone,
-        string $photo,
+        string $photo = null,
         string $last_name,
         string $first_name,
-        int    $birhday
+        string $birthday
     ): void
     {
         $this->username = $username;
@@ -78,16 +92,49 @@ class User extends ActiveRecord implements IdentityInterface
         $this->phone = $phone;
         $this->photo = $photo;
         $this->last_name = $last_name;
-        $this->firtst_name = $first_name;
-        $this->birhday = $birhday;
+        $this->first_name = $first_name;
+        $this->birthday = $birthday;
         $this->updated_at = time();
     }
 
-    public static function requestSignup(string $username, string $email, string $password): self
+    public function editProfile(
+        string $email,
+        string $phone,
+        string $photo = null,
+        string $last_name,
+        string $first_name,
+        string $birthday
+    ): void
+    {
+        $this->email = $email;
+        $this->phone = $phone;
+        $this->photo = $photo;
+        $this->last_name = $last_name;
+        $this->first_name = $first_name;
+        $this->birthday = $birthday;
+        $this->updated_at = time();
+
+    }
+
+    public static function requestSignup(
+        string $username,
+        string $email,
+        string $phone,
+        string $photo,
+        string $last_name,
+        string $first_name,
+        int    $birthday,
+        string $password
+    ): self
     {
         $user = new User();
         $user->username = $username;
         $user->email = $email;
+        $user->phone = $phone;
+        $user->photo = $photo;
+        $user->last_name = $last_name;
+        $user->first_name = $first_name;
+        $user->birthday = $birthday;
         $user->setPassword($password);
         $user->created_at = time();
         $user->status = self::STATUS_WAIT;
@@ -99,7 +146,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function confirmSignup(): void
     {
         if (!$this->isWait()) {
-            throw new \DomainException('User is already active.');
+            throw new \DomainException('Пользователь уже активен.');
         }
         $this->status = self::STATUS_ACTIVE;
         $this->email_confirm_token = null;
@@ -120,7 +167,7 @@ class User extends ActiveRecord implements IdentityInterface
         $networks = $this->networks;
         foreach ($networks as $current) {
             if ($current->isFor($network, $identity)) {
-                throw new \DomainException('Network is already attached.');
+                throw new \DomainException('Сеть уже подключена.');
             }
         }
         $networks[] = Network::create($network, $identity);
@@ -130,7 +177,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function requestPasswordReset(): void
     {
         if (!empty($this->password_reset_token) && self::isPasswordResetTokenValid($this->password_reset_token)) {
-            throw new \DomainException('Password resetting is already requested.');
+            throw new \DomainException('Сброс пароля уже запрошен.');
         }
         $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
     }
@@ -143,7 +190,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function resetPassword($password): void
     {
         if (empty($this->password_reset_token)) {
-            throw new \DomainException('Password resetting is not requested.');
+            throw new \DomainException('Сброс пароля не требуется.');
         }
         $this->setPassword($password);
         $this->password_reset_token = null;
@@ -180,6 +227,21 @@ class User extends ActiveRecord implements IdentityInterface
                 'class' => SaveRelationsBehavior::className(),
                 'relations' => ['networks'],
             ],
+            [
+                'class' => ImageUploadBehavior::className(),
+                'attribute' => 'photo',
+                'createThumbsOnRequest' => true,
+                'filePath' => '@staticRoot/origin/users/[[id]].[[extension]]',
+                'fileUrl' => '@static/origin/users/[[id]].[[extension]]',
+                'thumbPath' => '@staticRoot/cache/users/[[profile]]_[[id]].[[extension]]',
+                'thumbUrl' => '@static/cache/users/[[profile]]_[[id]].[[extension]]',
+                'thumbs' => [
+                    'user' => ['width' => 70, 'height' => 70],
+
+
+                ],
+
+            ],
         ];
     }
 
@@ -203,7 +265,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        throw new NotSupportedException('"findIdentityByAccessToken "не реализовано.');
     }
 
     /**
@@ -317,4 +379,5 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
+
 }

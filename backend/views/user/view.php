@@ -1,5 +1,6 @@
 <?php
 
+
 use post\helpers\UserHelper;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -39,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'photo',
                     'last_name',
                     'first_name',
-                    'birhday',
+                    'birthday',
                     [
                         'attribute' => 'status',
                         'value' => UserHelper::statusLabel($model->status),
@@ -54,6 +55,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     'updated_at:datetime',
                 ],
             ]) ?>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-header with-border">Photo</div>
+        <div class="box-body">
+            <?php if ($model->photo): ?>
+                <?= Html::a(Html::img($model->getThumbFileUrl('photo', 'admin')), $model->getUploadedFileUrl('photo'), [
+                    'class' => 'thumbnail',
+                    'target' => '_blank'
+                ]) ?>
+            <?php endif; ?>
         </div>
     </div>
 

@@ -3,46 +3,44 @@
 
 namespace frontend\controllers\cabinet;
 
+
+use post\forms\User\ProfileEditForm;
+use post\services\cabinet\ProfileService;
 use Yii;
 use post\entities\User\User;
-use post\services\manage\UserManageService;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class DefaultController extends Controller
+class ProfileController extends Controller
 {
     private $service;
 
-    public function __construct($id, $module, UserManageService $service, $config = [])
+    public function __construct($id, $module, ProfileService $service, $config = [])
     {
         parent::__construct($id, $module, $config);
         $this->service = $service;
     }
 
-    public function behaviors(): array
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-        ];
-    }
-
     /**
      * @return mixed
      */
-    public function actionIndex()
+    public function actionEdit()
     {
-
         $user = $this->findModel(Yii::$app->user->id);
-        return $this->render('index', ['user' => $user]);
+        $form = new ProfileEditForm($user);
+        if ($form->load(Yii::$app->request->post()) && $form->validate()) {
+            try {
+                $this->service->edit($user->id, $form);
+                return $this->redirect(['/cabinet/default/index', 'id' => $user->id]);
+            } catch (\DomainException $e) {
+                Yii::$app->errorHandler->logException($e);
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
+        return $this->render('edit', [
+            'model' => $form,
+            'user' => $user,
+        ]);
     }
 
     /**

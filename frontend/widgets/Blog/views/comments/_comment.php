@@ -2,11 +2,13 @@
 
 /* @var $item \frontend\widgets\Blog\CommentView */
 
+
+use yii\helpers\Html;
 ?>
 
 <div class="comment-item" data-id="<?= $item->comment->id ?>">
     <div class="comment-img">
-    <img src="/image/user.jpg" class="float-left img-circle"  alt="Paris" width="50%">
+     <?= Html::img('@static/cache/users/user_'.$item->comment->user->id.'.jpg', ['alt' => $item->comment->user->username, 'class' => 'float-left img-circle', 'width' => '50%']) ?>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">

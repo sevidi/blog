@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+
 /* @var $content string */
 
 use frontend\widgets\Blog\LastPostsWidget;
@@ -13,12 +14,12 @@ $this->title = 'SHATILIN';
 ?>
 <?php $this->beginContent('@frontend/views/layouts/main.php') ?>
 
-<div class="main-content">
+    <div class="main-content">
     <div class="row">
         <div id="slideshow0" class="owl-carousel" style="opacity: 1; margin-bottom: 40px">
-            <div class="item" >
-               <img src="http://static.blog.com/cache/banners/shatilin1.jpg"
-                    alt="iPhone 6" class="img-responsive">
+            <div class="item">
+                <img src="http://static.blog.com/cache/banners/shatilin1.jpg"
+                     alt="iPhone 6" class="img-responsive">
             </div>
             <div class="item">
                 <img src="http://static.blog.com/cache/banners/shatilin2.jpg"
@@ -38,7 +39,7 @@ $this->title = 'SHATILIN';
 
             </div>
             <div class="col-md-4" data-sticky_column>
-                        <div class="primary-sidebar">
+                <div class="primary-sidebar">
 
                     <aside class="widget">
                         <h3 class="widget-title text-uppercase text-center">Popular Posts</h3>

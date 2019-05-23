@@ -27,7 +27,7 @@ use yii\helpers\Url;
                         <h4><a href="<?= Html::encode($url) ?>"><?= Html::encode($post->title) ?></a></h4>
                         <div class="entry-content">
                         <p><?= Html::encode(StringHelper::truncateWords(strip_tags($post->description), 20)) ?></p>
-                            <span class="p-date">Автор: <?=$post->user->username?> <?= Html::encode(Yii::$app->formatter->format($post->created_at, 'date')) ?></span>
+                            <span class="p-date">Автор: <?=$post->user->getFullName()?> <?= Html::encode(Yii::$app->formatter->format($post->created_at, 'date')) ?></span>
                             <ul class="text-center pull-right">
                                 <li>
                                     <a class="s-facebook" href="#" title="Просмотров"><i class="fa fa-eye"></i></a>
