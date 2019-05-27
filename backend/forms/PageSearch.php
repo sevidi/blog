@@ -30,11 +30,11 @@ class PageSearch extends Model
     {
         $query = Page::find()->andWhere(['>', 'depth', 0]);
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'sort' => [
-                'defaultOrder' => ['lft' => SORT_ASC]
-            ]
-        ]);
+        'query' => $query,
+        'sort' => [
+            'defaultOrder' => ['lft' => SORT_ASC]
+        ]
+    ]);
         $this->load($params);
         if (!$this->validate()) {
             $query->where('0=1');

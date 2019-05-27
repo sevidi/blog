@@ -31,7 +31,4 @@ use frontend\widgets\Blog\PopularPostsWidget;
          </div>
         </aside>
      </div>
-
-    </aside>
-   </div>
 <?php $this->endContent() ?>

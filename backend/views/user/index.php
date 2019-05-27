@@ -29,8 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterModel' => $searchModel,
                 'columns' => [
                     [
+                        'attribute' => 'Slider',
                         'value' => function (User $model) {
-                            return $model->photo ? Html::img($model->getThumbFileUrl('photo', 'admin')) : null;
+                            return $model->photo ? Html::img($model->getThumbFileUrl('photo', 'user')) : null;
                         },
                         'format' => 'raw',
                         'contentOptions' => ['style' => 'width: 100px'],

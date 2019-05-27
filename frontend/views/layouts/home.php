@@ -1,12 +1,13 @@
 <?php
 
 /* @var $this yii\web\View */
-
+/* @var $slider post\entities\Slider */
 /* @var $content string */
 
 use frontend\widgets\Blog\LastPostsWidget;
 use frontend\widgets\Blog\PopularPostsWidget;
 use frontend\widgets\Blog\CategoriesWidget;
+
 
 \frontend\assets\OwlCarouselAsset::register($this);
 
@@ -16,19 +17,11 @@ $this->title = 'SHATILIN';
 
     <div class="main-content">
     <div class="row">
-        <div id="slideshow0" class="owl-carousel" style="opacity: 1; margin-bottom: 40px">
-            <div class="item">
-                <img src="http://static.blog.com/cache/banners/shatilin1.jpg"
-                     alt="iPhone 6" class="img-responsive">
-            </div>
-            <div class="item">
-                <img src="http://static.blog.com/cache/banners/shatilin2.jpg"
-                     alt="MacBookAir" class="img-responsive">
-            </div>
-            <div class="item">
-                <img src="http://static.blog.com/cache/banners/shatilin3.jpg"
-                     alt="MacBookAir" class="img-responsive">
-            </div>
+
+            <?= \frontend\widgets\SlidersWidget::Widget([
+                'limit' => 4,
+            ]) ?>
+
         </div>
 
         <div class="row">

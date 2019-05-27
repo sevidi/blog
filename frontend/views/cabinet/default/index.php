@@ -7,7 +7,8 @@
 use post\entities\User\User;
 use post\forms\manage\User\UserEditForm;
 use yii\helpers\Html;
-use yii\web\View;
+use yii\grid\GridView;
+use yii\data\ActiveDataProvider;
 
 $this->title = 'Кабинет';
 $this->params['breadcrumbs'][] = $this->title;
@@ -22,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
         <h3>Профиль</h3>
+
 
         <table class="table table-striped">
             <thead>

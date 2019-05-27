@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
         'options' => ['enctype'=>'multipart/form-data']
     ]); ?>
 
-    <div class="box-header with-border">Photo</div>
+    <div class="box-header with-border"></div>
 
     <?= $form->field($model, 'status')->textInput() ?>
 

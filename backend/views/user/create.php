@@ -1,5 +1,6 @@
 <?php
 
+use kartik\file\FileInput;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
@@ -11,13 +12,18 @@ $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-create">
-
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => ['enctype'=>'multipart/form-data']
+    ]); ?>
 
     <?= $form->field($model, 'username')->textInput(['maxLength' => true]) ?>
     <?= $form->field($model, 'email')->textInput(['maxLength' => true]) ?>
     <?= $form->field($model, 'phone')->textInput(['maxLength' => true]) ?>
-    <?= $form->field($model, 'photo')->textInput(['maxLength' => true]) ?>
+    <?= $form->field($model, 'photo')->label(false)->widget(FileInput::class, [
+        'options' => [
+            'accept' => 'image/*',
+        ]
+    ]) ?>
     <?= $form->field($model, 'last_name')->textInput(['maxLength' => true]) ?>
     <?= $form->field($model, 'first_name')->textInput(['maxLength' => true]) ?>
     <?= $form->field($model, 'birhday')->textInput(['maxLength' => true]) ?>

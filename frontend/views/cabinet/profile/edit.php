@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = 'Profile';
             <?= $form->field($model, 'email')->textInput(['maxLength' => true]) ?>
             <?= $form->field($model, 'phone', ['addon' => ['prepend' => ['content'=>'+']]])->textInput(['maxLength' => true]) ?>
             <div class="box box-default" style="margin: 30px 0">
-            <?= $form->field($model, 'photo')->label('Photo')->widget(FileInput::class, [
+            <?= $form->field($model, 'photo')->label('Slider')->widget(FileInput::class, [
                         'options' => [
                             'accept' => 'image/*',
                         ]

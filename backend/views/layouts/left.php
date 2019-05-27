@@ -41,6 +41,7 @@
                         ['label' => 'Pages', 'icon' => 'file-o', 'url' => ['/page/index'], 'active' => $this->context->id == 'page'],
                         ['label' => 'Files', 'icon' => 'file-o', 'url' => ['/file/index'], 'active' => $this->context->id == 'file'],
                     ]],
+                    ['label' => 'Slider', 'icon' => 'file-o', 'url' => ['/slider/index'], 'active' => $this->context->id == 'slider/index'],
                     ['label' => 'Users', 'icon' => 'user', 'url' => ['/user/index'], 'active' => $this->context->id == 'user/index'],
                 ],
             ]
