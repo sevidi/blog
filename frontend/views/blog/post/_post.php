@@ -31,8 +31,7 @@ $url = Url::to(['post', 'id' => $model->id]);
                     <span class="social-share-title pull-left text-capitalize">Автор: <?= $model->user->username; ?>  <?= Html::encode(Yii::$app->formatter->format($model->created_at, 'date')) ?></span>
                     <ul class="text-center pull-right" style="margin-top: 12px">
                         <li>
-                            <a class="s-facebook" href="#" title="Просмотров"><i class="fa fa-eye"></i></a>
-                            <?= (int)$model->viewed ?>
+                             <i class="fa fa-eye"></i> Просмотров: <?= (int)$model->viewed ?>
                         </li>
                     </ul>
                 </div>

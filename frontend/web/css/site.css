@@ -270,12 +270,10 @@ header {
 post css
  ===================*/
 .main-content {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
-article {
 
-}
 
 .page-view, .main-content {
     min-height: 480px;
@@ -353,7 +351,7 @@ a.more-link:hover {
 
 .post {
     background: #fff;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 
 }
 
@@ -1690,7 +1688,7 @@ p.go-back-home a:hover {
 
 /* footer */
 footer {
-    margin-top: 30px;
+    margin-top: 20px;
     padding-top: 30px;
     background-color: #303030;
     border-top: 1px solid #ddd;

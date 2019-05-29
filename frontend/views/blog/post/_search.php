@@ -7,11 +7,11 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 
-$url = Url::to(['search', 'id' => $model->q]);
+$url = Url::to(['search', 'id' => $model->id]);
 ?>
+
 <article class="post post-list">
     <div class="row">
-        <h2 class="title text-center">Поиск по запросу: <?= Html::encode($q)?></h2>
         <?php if ($model->photo): ?>
             <div class="col-md-6">
                 <div class="post-thumb">

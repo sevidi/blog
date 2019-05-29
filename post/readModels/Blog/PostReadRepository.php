@@ -65,9 +65,15 @@ class PostReadRepository
      * @param $id
      * @return Post|null
      */
+
     public function find($id): ?Post
     {
         return Post::find()->active()->andWhere(['id' => $id])->one();
+    }
+
+    public function PostSearch(Category $category): ActiveQuery
+    {
+        return Post::find()->active()->andWhere(['category_id' => $category->id])->with('category');
     }
 
     private function getProvider(ActiveQuery $query): ActiveDataProvider

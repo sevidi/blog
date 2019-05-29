@@ -9,12 +9,12 @@ use post\forms\Blog\CommentForm;
 use post\readModels\Blog\CategoryReadRepository;
 use post\readModels\Blog\PostReadRepository;
 use post\readModels\Blog\TagReadRepository;
-use post\readModels\Blog\SearchReadRepository;
 use post\services\Blog\CommentService;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
- ;
+use yii\data\ActiveDataProvider;
+
 
 class PostController extends Controller
 {
@@ -24,7 +24,7 @@ class PostController extends Controller
     private $posts;
     private $categories;
     private $tags;
-    private $searchs;
+
 
 
     public function __construct(
@@ -34,7 +34,6 @@ class PostController extends Controller
         PostReadRepository $posts,
         CategoryReadRepository $categories,
         TagReadRepository $tags,
-        SearchReadRepository $searchs,
         $config = []
     )
     {
@@ -43,7 +42,7 @@ class PostController extends Controller
         $this->posts = $posts;
         $this->categories = $categories;
         $this->tags = $tags;
-        $this->searchs = $searchs;
+
 
     }
 
@@ -135,15 +134,22 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionSearch()
     {
-        $q = trim(Yii::$app->request->get('q'));
-        if (!$search = $this->searchs->getAll($q)) {
+        $search = Yii::$app->request->get('search');
+        $search1 = str_replace(' ', '', $search);
+        if (!$category = $this->categories->getAll()) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-        $dataProvider = $this->posts->getAllByCategory($search);
+        $query = Post::find()->active()->andWhere(['category_id' => $category])->where(['like', 'replace(title, " ", "")', $search1]);
+       $dataProvider = new ActiveDataProvider(['query' => $query, 'pagination' => ['pageSize' => 6,],]);
+
         return $this->render('search', [
-            'search' => $search,
+            'search1' => $search1,
             'dataProvider' => $dataProvider,
         ]);
 
