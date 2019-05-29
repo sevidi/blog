@@ -4,6 +4,7 @@ namespace post\forms\auth;
 use Yii;
 use yii\base\Model;
 use post\entities\User\User;
+use yii\web\UploadedFile;
 
 /**
  * Signup form
@@ -13,6 +14,10 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $phone;
+    public $photo;
+    public $last_name;
+    public $first_name;
+    public $birthday;
     public $password;
 
 
@@ -38,6 +43,16 @@ class SignupForm extends Model
 
             ['phone', 'required'],
             ['phone', 'integer'],
+            [['photo'], 'image'],
         ];
+    }
+
+    public function beforeValidate(): bool
+    {
+        if (parent::beforeValidate()) {
+            $this->photo = UploadedFile::getInstance($this, 'photo');
+            return true;
+        }
+
     }
 }

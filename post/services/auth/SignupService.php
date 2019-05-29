@@ -41,8 +41,15 @@ class SignupService
             $form->username,
             $form->email,
             $form->phone,
+            $form->photo = null,
+            $form->last_name,
+            $form->first_name,
+            $form->birthday = null,
             $form->password
         );
+        if ($form->photo) {
+            $user->setPhoto($form->photo);
+        }
 
         $this->transaction->wrap(function () use ($user) {
             $this->users->save($user);

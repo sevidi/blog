@@ -26,13 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
         <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Наименование позиции</th>
-                <th>Результат</th>
 
-            </tr>
-            </thead>
             <tbody>
             <tr>
                 <td>Фото</td>

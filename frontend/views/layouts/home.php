@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $slider post\entities\Slider */
+
 /* @var $content string */
 
 use frontend\widgets\Blog\LastPostsWidget;
@@ -16,39 +17,39 @@ $this->title = 'SHATILIN';
 <?php $this->beginContent('@frontend/views/layouts/main.php') ?>
 
     <div class="main-content">
-    <div class="row">
+        <div class="row">
 
             <?= \frontend\widgets\SlidersWidget::Widget([
                 'limit' => 4,
             ]) ?>
 
-        </div>
 
-        <div class="row">
-            <div class="col-md-8">
-                <?= LastPostsWidget::widget([
-                    'limit' => 4,
-                ]) ?>
+            <div class="row">
+                <div class="col-md-8">
+                    <?= LastPostsWidget::widget([
+                        'limit' => 4,
+                    ]) ?>
 
-            </div>
-            <div class="col-md-4" data-sticky_column>
-                <div class="primary-sidebar">
+                </div>
+                <div class="col-md-4" data-sticky_column>
+                    <div class="primary-sidebar">
 
-                    <aside class="widget">
-                        <h3 class="widget-title text-uppercase text-center">Popular Posts</h3>
+                        <aside class="widget">
+                            <h3 class="widget-title text-uppercase text-center">Popular Posts</h3>
 
-                        <?= PopularPostsWidget::widget([
-                            'limit' => 3,
-                        ]) ?>
+                            <?= PopularPostsWidget::widget([
+                                'limit' => 3,
+                            ]) ?>
 
-                    </aside>
+                        </aside>
 
-                    <aside class="widget border pos-padding">
-                        <h3 class="widget-title text-uppercase text-center">Categories</h3>
-                        <?= CategoriesWidget::widget([
+                        <aside class="widget border pos-padding">
+                            <h3 class="widget-title text-uppercase text-center">Categories</h3>
+                            <?= CategoriesWidget::widget([
 
-                        ]) ?>
-                    </aside>
+                            ]) ?>
+                        </aside>
+                    </div>
                 </div>
             </div>
         </div>

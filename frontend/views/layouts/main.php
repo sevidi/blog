@@ -53,9 +53,9 @@ AppAsset::register($this);
                     </div>
 
                     <div class="col-sm-5">
-                        <?= Html::beginForm(['/core/catalog/search'], 'get') ?>
+                        <?= Html::beginForm(['/blog/post/search'], 'get') ?>
                         <div id="search" class="input-group">
-                            <input type="text" name="text" value="" placeholder="Search" class="form-control input-lg"/>
+                            <input type="text" name="q" value="" placeholder="Search" class="form-control input-lg"/>
                             <span class="input-group-btn">
                         <button type="submit" class="btn btn-default btn-lg"><i class="fa fa-search"></i></button>
 

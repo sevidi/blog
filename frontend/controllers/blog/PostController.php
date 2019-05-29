@@ -3,14 +3,18 @@
 
 namespace frontend\controllers\blog;
 
+use post\entities\Blog\Category;
+use post\entities\Blog\Post\Post;
 use post\forms\Blog\CommentForm;
 use post\readModels\Blog\CategoryReadRepository;
 use post\readModels\Blog\PostReadRepository;
 use post\readModels\Blog\TagReadRepository;
+use post\readModels\Blog\SearchReadRepository;
 use post\services\Blog\CommentService;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+ ;
 
 class PostController extends Controller
 {
@@ -20,6 +24,7 @@ class PostController extends Controller
     private $posts;
     private $categories;
     private $tags;
+    private $searchs;
 
 
     public function __construct(
@@ -29,6 +34,7 @@ class PostController extends Controller
         PostReadRepository $posts,
         CategoryReadRepository $categories,
         TagReadRepository $tags,
+        SearchReadRepository $searchs,
         $config = []
     )
     {
@@ -37,6 +43,7 @@ class PostController extends Controller
         $this->posts = $posts;
         $this->categories = $categories;
         $this->tags = $tags;
+        $this->searchs = $searchs;
 
     }
 
@@ -126,6 +133,21 @@ class PostController extends Controller
             'post' => $post,
             'model' => $form,
         ]);
+    }
+
+    public function actionSearch()
+    {
+        $q = trim(Yii::$app->request->get('q'));
+        if (!$search = $this->searchs->getAll($q)) {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+        $dataProvider = $this->posts->getAllByCategory($search);
+        return $this->render('search', [
+            'search' => $search,
+            'dataProvider' => $dataProvider,
+        ]);
+
+
     }
 
 }

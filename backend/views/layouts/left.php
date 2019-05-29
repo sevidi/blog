@@ -1,14 +1,20 @@
-<aside class="main-sidebar">
+<?php
+use yii\helpers\Html;
 
-    <section class="sidebar">
+/* @var $user \post\entities\User\User */?>
+
+<aside class="main-sidebar" >
+
+    <section class="sidebar"">
 
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+
+                <img src="http://static.blog.com/cache/users/user_<?= Yii::$app->user->identity->id?>.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p> <?=Yii::$app->user->identity->username?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>

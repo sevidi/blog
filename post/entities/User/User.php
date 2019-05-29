@@ -50,9 +50,9 @@ class User extends ActiveRecord implements IdentityInterface
         string $email,
         string $phone,
         string $photo = null,
-        string $last_name,
-        string $first_name,
-        string $birthday,
+        string $last_name = null,
+        string $first_name = null,
+        string $birthday = null,
         string $password
          ): self
     {
@@ -120,10 +120,10 @@ class User extends ActiveRecord implements IdentityInterface
         string $username,
         string $email,
         string $phone,
-        string $photo,
-        string $last_name,
-        string $first_name,
-        int    $birthday,
+        string $photo = null,
+        string $last_name = null,
+        string $first_name = null,
+        string $birthday = null,
         string $password
     ): self
     {
