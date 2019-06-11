@@ -5,10 +5,11 @@
 
 /* @var $content string */
 
+
 use frontend\widgets\Blog\LastPostsWidget;
 use frontend\widgets\Blog\PopularPostsWidget;
 use frontend\widgets\Blog\CategoriesWidget;
-
+use frontend\widgets\Poll\Poll;
 
 \frontend\assets\OwlCarouselAsset::register($this);
 
@@ -48,6 +49,18 @@ $this->title = 'SHATILIN';
                             <?= CategoriesWidget::widget([
 
                             ]) ?>
+                        </aside>
+
+                    <div class="primary-sidebar">
+
+                        <aside class="widget">
+                            <h3 class="widget-title text-uppercase text-center">Опросы</h3>
+
+                            <?= Poll::widget([
+
+
+                            ]) ?>
+
                         </aside>
                     </div>
                 </div>
